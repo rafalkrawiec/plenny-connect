@@ -12,3 +12,5 @@ export * from './Services/Dictionary';
 export * from './Services/RequestBuilder';
 
 export * from './Stores/UseHubDictionaryStore';
+
+export * from './extensions';
