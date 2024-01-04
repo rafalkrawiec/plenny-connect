@@ -25,13 +25,13 @@ export function useDictionary<B extends Bindings, T extends Record<string, Endpo
     }
 
     if (!endpoint) {
-      data[key] = dictionary([]);
+      data[key].rehydrate([]);
       ready[key] = true;
       return;
     }
 
     client.request(buildResourceRequest({ endpoint, bindings: { ...route.params, ...toValue(bindings) } })).then((res) => {
-      data[key] = dictionary(res.data);
+      data[key].rehydrate(res.data);
       ready[key] = true;
     }).catch((err) => {
       ready[key] = true;

@@ -2,7 +2,9 @@ export type MetaDictionary = ReturnType<typeof dictionary>;
 export type MetaEntry = { label: string, value: any, [k: string]: any };
 export type MetaStore = Array<MetaEntry>;
 
-export function dictionary(store: MetaStore) {
+export function dictionary(initial: MetaStore) {
+  let store = initial;
+
   function record(value: any) {
     if (value == null) {
       return null;
@@ -15,5 +17,14 @@ export function dictionary(store: MetaStore) {
     return record(value)?.label;
   }
 
-  return { store, record, label };
+  function rehydrate(fresh: MetaStore) {
+    store = fresh;
+  }
+
+  return {
+    store,
+    record,
+    label,
+    rehydrate,
+  };
 }
