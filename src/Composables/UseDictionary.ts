@@ -12,7 +12,7 @@ export function useDictionary<B extends Bindings, T extends Record<string, Endpo
   const client = useApiClient();
   const route = useRoute();
 
-  const data = reactive({}) as Record<keyof T, MetaDictionary>;
+  const data = reactive(Object.fromEntries(Object.entries(endpoints).map(([key]) => [key, dictionary([])]))) as Record<keyof T, MetaDictionary>;
   const ready = reactive(Object.fromEntries(Object.entries(endpoints).map(([key]) => [key, false]))) as Record<keyof T, boolean>;
   const loading = computed(() => !Object.values(ready).every((v) => !!v));
   const error = ref();
