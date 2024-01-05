@@ -1,16 +1,18 @@
+import { ref } from 'vue';
+
 export type MetaDictionary = ReturnType<typeof dictionary>;
 export type MetaEntry = { label: string, value: any, [k: string]: any };
 export type MetaStore = Array<MetaEntry>;
 
 export function dictionary(initial: MetaStore) {
-  let store = initial;
+  const store = ref(initial);
 
   function record(value: any) {
     if (value == null) {
       return null;
     }
 
-    return store.find((record) => record.value === value);
+    return store.value.find((record) => record.value === value);
   }
 
   function label(value: any) {
@@ -18,7 +20,7 @@ export function dictionary(initial: MetaStore) {
   }
 
   function rehydrate(fresh: MetaStore) {
-    store = fresh;
+    store.value = fresh;
   }
 
   return {
