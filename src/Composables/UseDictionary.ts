@@ -40,12 +40,12 @@ export function useDictionary<B extends Bindings, T extends Record<string, Endpo
   }
 
   watch(() => bindings, () => {
-    Object.keys(endpoints).forEach((key: keyof T) => {
-      refresh(key);
-    });
+    Object.keys(endpoints).forEach((key: keyof T) => refresh(key));
   }, {
     immediate: true,
   });
 
   return { data, loading, error, refresh };
 }
+
+export type MetaRepository<B extends Bindings, T extends Record<string, EndpointResolver<B>>> = ReturnType<typeof useDictionary<B, T>>;
