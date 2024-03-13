@@ -29,6 +29,10 @@ export function dictionary<T extends MetaEntry = never>(initial: MetaStore<T>) {
       return store.value[Symbol.iterator]();
     },
 
+    get length() {
+      return store.value.length;
+    },
+
     store,
     record,
     label,
