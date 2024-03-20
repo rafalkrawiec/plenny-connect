@@ -1,18 +1,17 @@
 import type { AxiosInstance } from 'axios';
 import type { Plugin } from 'vue';
-import type { PusherOptions } from '../Composables/UseBroadcast';
-import { ApiClient, PusherConfiguration } from '../DependencyInjection/Connect';
+import { ApiClient, EchoConfiguration, type EchoOptions } from '../DependencyInjection/Connect';
 import { useHubDictionaryStore } from '../Stores/UseHubDictionaryStore';
 
 type Options = {
   client: AxiosInstance,
-  pusher: PusherOptions,
+  echo: EchoOptions,
 }
 
 export const ConnectPlugin: Plugin<Options> = {
   install(app, options) {
     app.provide(ApiClient, options.client);
-    app.provide(PusherConfiguration, options.pusher);
+    app.provide(EchoConfiguration, options.echo);
 
     options.client.interceptors.response.use((res) => res, (error) => {
       if (error.response.status === 422) {
