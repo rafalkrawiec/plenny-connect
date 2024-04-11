@@ -18,6 +18,12 @@ export const ConnectPlugin: Plugin<Options> = {
         return Promise.reject(error);
       }
 
+      if (error.response.status === 419) {
+        window.location.reload();
+
+        return Promise.reject(error);
+      }
+
       const dialog = document.createElement('div');
       const iframe = document.createElement('iframe');
 
