@@ -2,7 +2,7 @@
   "name": "@plenny/connect",
   "description": "This packages provides utilities to connect Vue SPA with Laravel backed.",
   "keywords": ["plenny", "vue", "laravel", "axios", "pusher"],
-  "version": "0.1.9",
+  "version": "0.1.10",
   "license": "MIT",
   "homepage": "https://github.com/rafalkrawiec/plenny-connect",
   "repository": {
@@ -41,7 +41,7 @@
     "vite": "^5.0.0",
     "vite-plugin-dts": "^3.0.0"
   },
-  "dependencies": {
+  "peerDependencies": {
     "axios": "^1.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0",
